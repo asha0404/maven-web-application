@@ -1,1 +1,17 @@
-
+pipeline {
+     
+    stages
+    {
+          stage('Build Docker Image'){
+        sh 'docker build -t asharajannadocker/maven-web .'
+    }
+    
+    stage('Push Docker Image'){
+        script {
+          sh "docker login -u asharajannadocker -p Asha1@aws"
+        stage('Run Docker Image In Dev Server'){
+        
+        dockerRun = ' docker run  -d -p 9080:8080 --name java-web-app asharajannadocker/java-web-app'
+         
+         }
+         }
